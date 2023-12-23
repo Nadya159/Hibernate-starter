@@ -1,10 +1,7 @@
 package by.javaguru.hibernate.starter.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -16,6 +13,8 @@ import java.math.BigDecimal;
 @Table(name = "ticket", schema = "public")
 public class Ticket {
     @Id
+    @GeneratedValue
+    private Long id;
     @Column(name = "passport_no")
     private String passportNo;
     @Column(name = "passenger_name")
