@@ -1,23 +1,26 @@
 package by.javaguru;
 
+import by.javaguru.dao.TicketDao;
 import by.javaguru.entity.Ticket;
+import by.javaguru.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.junit.jupiter.api.*;
 
 import java.math.BigDecimal;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class TicketDaoTest {
     private static SessionFactory sessionFactory;
     private static Session session;
+    private static  TicketDao ticketDao = TicketDao.getInstance();
+
+    private static Ticket ticket = new TicketDaoTest().buildTicket();
 
     @BeforeAll
     static void setup() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        sessionFactory = configuration.buildSessionFactory();
-        session = sessionFactory.openSession();
+        sessionFactory = HibernateUtil.getSessionFactory();
     }
 
     @BeforeEach
@@ -37,11 +40,18 @@ public class TicketDaoTest {
     }
 
     @Test
-    public void testSave() {
-        Ticket ticket = new TicketDaoTest().buildTicket();
-        Assertions.assertNull(ticket.getId());
-        session.persist(ticket);
-        Assertions.assertNotNull(ticket.getId());
+    void testSave() {
+        assertTrue(ticketDao.save(ticket));
+    }
+
+    @Test
+    void testUpdate() {
+        assertTrue(ticketDao.update(ticket));
+    }
+
+    @Test
+    void testDelete() {
+        assertTrue(ticketDao.delete(ticket.getId()));
     }
 
     public Ticket buildTicket() {
