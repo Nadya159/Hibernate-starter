@@ -5,8 +5,10 @@ import by.javaguru.entity.Ticket;
 import by.javaguru.util.HibernateUtil;
 
 import java.math.BigDecimal;
-
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 public class HibernateRunner {
+    //private static final Logger log = LoggerFactory.getLogger(HibernateRunner.class);
     public static void main(String[] args) {
         var sessionFactory = HibernateUtil.getSessionFactory();
         TicketDao ticketDao = TicketDao.getInstance();
@@ -17,6 +19,7 @@ public class HibernateRunner {
                 .seatNo("A2")
                 .cost(BigDecimal.valueOf(1))
                 .build()));
+        log.debug("User object: {} ", ticketDao);
         sessionFactory.close();
     }
 }
