@@ -6,17 +6,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
 @IdClass(SeatId.class)
-@Table(name = "seat", schema = "public")
-public class Seat {
+@Table(name = "seat")
+public class Seat implements Serializable {
     @Id
-    @Column(name = "aircraft_id")
+    @ManyToOne
     private Aircraft aircraft;
+
     @Id
     @Column(name = "seat_no")
     private String seatNo;

@@ -6,15 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "airport", schema = "public")
-public class Airport {
+@Table(name = "airport")
+public class Airport implements Serializable {
     @Id
     private String code;
 

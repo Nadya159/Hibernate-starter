@@ -14,5 +14,9 @@
     <property name="hibernate.hbm2ddl.auto">create</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <mapping class="by.javaguru.entity.Ticket"/>
+    <mapping class="by.javaguru.entity.Aircraft"/>
+    <mapping class="by.javaguru.entity.Airport"/>
+    <mapping class="by.javaguru.entity.Flight"/>
+    <mapping class="by.javaguru.entity.Seat"/>
   </session-factory>
 </hibernate-configuration>

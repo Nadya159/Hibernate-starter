@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
@@ -13,11 +14,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "flight", schema = "public")
-public class Flight {
+@Table(name = "flight")
+public class Flight implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "flight_no")
     private String flightNo;
 
@@ -31,12 +33,12 @@ public class Flight {
     @Column(name = "arrival_date")
     private LocalDateTime arrivalDate;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Airport arrivalAirportCode;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn
     private Aircraft aircraft;
 
     @Column(name = "status")
